@@ -1,0 +1,50 @@
+<aura:component controller="AuraAssignmentController">
+    <aura:attribute name="ObjectList" type="List" />
+    <aura:attribute name="ObjectName" type="String" />
+    <aura:attribute name="FieldList" type="List" />
+    <aura:attribute name="FieldOption" type="List" />
+    <aura:attribute name="FieldName" type="String" />
+    <aura:attribute name="QueryField" type="String" />
+    <aura:attribute name="myQueryField" type="String" />
+    <aura:attribute name="QueryFieldList" type="List" />
+    <aura:attribute name="Records" type="Object" />
+    <aura:attribute name="flag" type="Boolean" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.showObject}" />
+    
+    <div class="modal-header slds-modal__header slds-size_1-of-1">
+        <h4 class="title slds-text-heading--medium">All Object &#38; Respective Fields</h4>
+    </div>
+    
+    <div class="slds-var-p-around_medium">
+        <b>Select Any Object</b>
+        <lightning:select aura:id="Dropdown" label="" onchange="{!c.showField}">
+            <option value="null">--None--</option>
+            <aura:iteration items="{!v.ObjectList}" var="obj">
+                <option value="{!obj}">{!obj}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+    
+    <div class="slds-var-p-around_medium">
+        
+        <lightning:checkboxGroup aura:id="item" label="Select Field" options="{!v.FieldOption}"
+                                 value="{!v.FieldList}" onchange="{!c.FieldItem}" />
+    </div>    
+    
+    <div>
+        <lightning:textarea aura:id="mytextarea" label="Query" value="{!v.myQueryField}" />
+    </div>
+    
+    <lightning:button variant="brand" label="Query Records" onclick="{! c.showRecord }" />
+    
+    
+    
+    <div class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+        <lightning:datatable
+                             keyField="id"
+                             columns="{!v.QueryFieldList}"
+                             data="{!v.Records}"
+                             hideCheckboxColumn="true"/>
+    </div>
+</aura:component>
