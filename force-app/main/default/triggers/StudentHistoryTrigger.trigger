@@ -1,5 +1,7 @@
 trigger StudentHistoryTrigger on Student__c (after update) {
     
+    // Added a comment to test repository from vs code
+
     List<Student_History__c> studentHistoryData = new List<Student_History__c>();
     for(Student__c student : trigger.new){
         Map<String, Object> fieldsInfo = student.getPopulatedFieldsAsMap();
