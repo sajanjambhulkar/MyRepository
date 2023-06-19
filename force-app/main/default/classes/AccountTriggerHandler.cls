@@ -43,6 +43,7 @@ public class AccountTriggerHandler {
         }
         catch(Exception e){
             System.debug('Exception Message '+e.getMessage() + ' Line No. >> '+e.getLineNumber());
+            System.debug('added this comment');
         }
     }
 }
